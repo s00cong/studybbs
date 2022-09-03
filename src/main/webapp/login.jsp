@@ -82,5 +82,9 @@
 	text-align:center : 하나의 문장을 가운데 정렬한다는 뜻
 	<input type="text" class="form-control" placeholder="아이디" name="userID">
 		: 여기에서 name은 나중에 서버 프로그램을 작성할 때 중요한 요소
-
+ 	
+ 	
+ 	회원 정보를 jsp에서 다루는 방법 (db에서 가져오는 정보를 jsp서버에서 담고 처리할수 있어야한다.
+ 	그러기 위해서 javaresource안에 패키지를 하나 만들어 준다. 
+ 	그리고 클래스를 하나 만들어줌
  -->
