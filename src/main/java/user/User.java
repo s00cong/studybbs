@@ -9,6 +9,8 @@ public class User {
 	 * ==> 이렇게 하면 회원정보를 다룰 수 있는 database 및 java beans가 만들어짐
 	 * 
 	 * javabeans: 하나의 데이터를 관리하고 처리할수있는 기법을 jsp에서 구현하는 것
+	 * 
+	 * jsp에서 회원 데이터 테이블에 접근할 수 있도록 하는 것 : DAO
 	 * */
 	private String userID;
 	private String userPassword;
