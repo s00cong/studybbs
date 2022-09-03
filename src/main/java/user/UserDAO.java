@@ -29,7 +29,13 @@ public class UserDAO {
 	}
 	
 	public int login(String userID, String userPassword){//실제로 로그인을 시도하는 함수
-	
+		/***
+		 * 로그인 기능이 구현됨
+		 * 이 기능 실제로 사용해서 사용자에게 로그인 결과를 알려주는 페이지를 만들어야함.
+		 * ==> 그게 바로 로그인 action페이지
+		 * 
+		 * loginAction 페이지에 id,pwd 보내면 거기서 처리해줌. 
+		 */
 		String SQL = "SELECT userPassword FROM USER WHERE userID= ? ";
 		System.out.println("!!!!!!!!!!SQL is "+SQL);
 		try {
@@ -53,13 +59,24 @@ public class UserDAO {
 		}
 		return -2; // database 오류를 의미함.
 	}// 한 계정에 대한 로그인 해주는 함수
+	
+	
+	public int join(User user) {
+		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?)";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1,user.getUserID());
+			pstmt.setString(2,user.getUserPassword());
+			pstmt.setString(3,user.getUserName());
+			pstmt.setString(4,user.getUserGender());
+			pstmt.setString(5,user.getUserEmail());
+			return pstmt.executeUpdate();
+			//insert  쿼리 문은 반드시 0이상의 실행 결과를 반환하기 때문에 이렇게만 해도 됨
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return -1; //DB 오류
+	}
 }
 
-/***
- * 로그인 기능이 구현됨
- * 이 기능 실제로 사용해서 사용자에게 로그인 결과를 알려주는 페이지를 만들어야함.
- * ==> 그게 바로 로그인 action페이지
- * 
- * loginAction 페이지에 id,pwd 보내면 거기서 처리해줌. 
 
- */

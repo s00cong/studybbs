@@ -28,7 +28,7 @@
 		if(result == 1 ){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("location.href = 'main.jsp'");
+			script.println("location.href = 'main.jsp'"); //내가 하고싶은거 : 로그인 시 계정 정보 다르게 하기, 회원가입 시 회원가입 환영 페이지로 넘어가기.
 			script.println("</script>");
 		}
 		else if(result == 0 ){
