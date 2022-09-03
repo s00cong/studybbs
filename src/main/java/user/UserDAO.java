@@ -17,7 +17,7 @@ public class UserDAO {
 	
 	public UserDAO() { //생성자 만들어주기
 		try {
-			String dbURL = "jdbc:mysql://localhost::3306/BBS"; //bbs란 db에 접속할 수 있도록 해주는것
+			String dbURL = "jdbc:mysql://localhost:3306/BBS"; //bbs란 db에 접속할 수 있도록 해주는것
 			String dbID = "root";
 			String dbPassword = "subin1156";
 			Class.forName("com.mysql.jdbc.Driver");//mysql driver를 찾을 수 있도록, driver: mysql에 접속할 수 있도록 매개체 역할을 함.
@@ -27,15 +27,19 @@ public class UserDAO {
 			e.printStackTrace();
 		}// 이부분이 실제로 db에 접속하게 해주는 부분
 	}
+	
 	public int login(String userID, String userPassword){//실제로 로그인을 시도하는 함수
 	
 		String SQL = "SELECT userPassword FROM USER WHERE userID= ? ";
-		
+		System.out.println("!!!!!!!!!!SQL is "+SQL);
 		try {
 			pstmt = conn.prepareStatement(SQL); //pstmt에 어떠한 정해진 sql문장을 db에 삽입하는 형식으로 인스턴스 가지고 옴
 			pstmt.setString(1,userID); //****젤 중요한 부분**** 하나의 문장을(pstmt) 미리 준비해 놨다가 ?에 매개변수로 받은 것을 가져다 놓는 형식 
 			//해킹 같은거 피하기 위해
+			System.out.println(userID);
+			
 			rs = pstmt.executeQuery();// sql에 값 넣었을 때의 결과값을 저장하는 변수 
+			
 			if(rs.next()) {
 				if(rs.getString(1).equals(userPassword)) {
 					return 1; // 로그인 성공
@@ -51,3 +55,11 @@ public class UserDAO {
 	}// 한 계정에 대한 로그인 해주는 함수
 }
 
+/***
+ * 로그인 기능이 구현됨
+ * 이 기능 실제로 사용해서 사용자에게 로그인 결과를 알려주는 페이지를 만들어야함.
+ * ==> 그게 바로 로그인 action페이지
+ * 
+ * loginAction 페이지에 id,pwd 보내면 거기서 처리해줌. 
+
+ */
